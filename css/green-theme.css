@@ -25,6 +25,10 @@ body {
   overflow: hidden;
 }
 
+#pt-3-2{
+  border: 4px solid #159947;
+}
+
 .rel,
 section,
 .container {
@@ -37,7 +41,6 @@ section,
   height: 100%;
 }
 
-
 .block-shadow {
   -webkit-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
   -moz-box-shadow: 0 4px 12px 0 rgba(0, 0, 0, .08);
@@ -49,7 +52,6 @@ section,
   box-shadow: 10px 10px 0px 3px #159947;
 
 }
-
 
 .block-border {
   border: 1px solid #e7e7e7;
