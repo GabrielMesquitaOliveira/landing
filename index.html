@@ -906,29 +906,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script>
-      $(document).ready(function () {
-        $("#phone").mask("(00) 00000-0000");
-
+      document.addEventListener("DOMContentLoaded", function () {
         document
           .getElementById("list-form")
           .addEventListener("submit", function (event) {
             event.preventDefault();
-
-            var formData = new FormData(this);
-
-            fetch("http://localhost/landing/php/contact.php", {
-              method: "POST",
-              body: formData,
-            })
-              .then(function (response) {
-                return response.text();
-              })
-              .then(function (data) {
-                console.log(data);
-              })
-              .catch(function (error) {
-                console.error("Erro: " + error);
-              });
+            const formData = new FormData(document.getElementById("list-form"));
+            for (const [name, value] of formData.entries()) {
+              console.log(name, value);
+            }
           });
       });
     </script>

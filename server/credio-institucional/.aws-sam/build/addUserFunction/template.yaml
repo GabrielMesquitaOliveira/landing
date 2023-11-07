@@ -1,0 +1,50 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: >-
+  credio-institucional
+
+Transform:
+- AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Environment:
+      Variables:
+        hardcodedPass: codigosecretoprarotaalluserscredio12121244123
+
+Resources:
+  getAllUsersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/user-getAllUsers.getAllUsersHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP get method to get all items from a DynamoDB table.
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /allusers
+            Method: GET
+  addUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/handlers/user-addUser.addUserHandler
+      Runtime: nodejs16.x
+      Architectures:
+        - x86_64
+      MemorySize: 128
+      Timeout: 100
+      Description: A simple example includes a HTTP post method to add one item to a DynamoDB table.
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /adduser
+            Method: POST
+Outputs:
+  WebEndpoint:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/"
