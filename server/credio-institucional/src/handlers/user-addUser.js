@@ -1,6 +1,7 @@
 const Loaders = require("../../database");
 const { addUser } = require("../../database/users");
 const {
+  fillHeaders,
   okResponseType,
   notFoundResponseType,
 } = require("../../response-types");
@@ -15,7 +16,7 @@ exports.addUserHandler = async (event) => {
   console.info("received:", event);
 
   const body = JSON.parse(event.body);
-  let response;
+  let response = fillHeaders();
   await Loaders.start();
 
   try {

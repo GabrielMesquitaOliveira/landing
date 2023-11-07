@@ -19,7 +19,13 @@ async function addManyUsers(users = []) {
 async function findByProperty(key, value) {
   if (!key) {
     console.info("[database-users] Return all users..");
-    return UserModel.find({});
+    let data;
+    try {
+      data = await UserModel.find({});
+    } catch (err) {
+      console.error("erro find : ", err);
+    }
+    return data;
   }
   return UserModel.findOne({ [key]: value });
 }

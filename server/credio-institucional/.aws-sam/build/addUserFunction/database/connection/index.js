@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
-const config = require("config");
-console.info(config);
-
-const dbConfig = config.get("PMS.dbConfig.name");
+const config = require("../config");
+const dbConfig = config.PMS.dbConfig.name;
 
 console.info(dbConfig);
-
 async function startDB() {
-  mongoose.connect(dbConfig);
+  try {
+    mongoose.connect(dbConfig);
+  } catch (err) {
+    console.error("err: ", err);
+  }
 }
 
 module.exports = {

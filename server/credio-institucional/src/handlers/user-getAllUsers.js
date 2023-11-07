@@ -3,6 +3,7 @@ const { getAllUsers } = require("../../database/users");
 const { hardcodedPass } = process.env;
 
 const {
+  fillHeaders,
   unauthorizedCallResponseType,
   okResponseType,
 } = require("../../response-types");
@@ -15,7 +16,7 @@ exports.getAllUsersHandler = async (event) => {
   }
   const { code } = event?.queryStringParameters;
   console.info("received:", event);
-  let response;
+  let response = fillHeaders();
   if (code !== hardcodedPass) {
     console.info(
       `response from: ${event.path} statusCode: ${response.statusCode} body: ${response.body}`

@@ -10,15 +10,13 @@
 //   };
 //   await addUser(user);
 // }
+
 // async function run() {
 //   console.info("starting database");
 //   await Loaders.start();
 //   await save();
-
 //   const data = await getAllUsers();
-
 //   console.info(" response data : ");
-
 //   console.info(data);
 // }
 
