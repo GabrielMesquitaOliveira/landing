@@ -1,9 +1,0 @@
-{
-    "PMS": {
-        "dbConfig": {
-            "host": "ac-vvcalbs-shard-00-00.dhlpu87.mongodb.net",
-            "port": 27017,
-            "name": "mongodb://app-test-0005:mongopassKKpepe@ac-vvcalbs-shard-00-00.dhlpu87.mongodb.net:27017,ac-vvcalbs-shard-00-01.dhlpu87.mongodb.net:27017,ac-vvcalbs-shard-00-02.dhlpu87.mongodb.net:27017/?ssl=true&replicaSet=atlas-13fl1f-shard-0&authSource=admin&retryWrites=true&w=majority"
-        }
-    }
-}
