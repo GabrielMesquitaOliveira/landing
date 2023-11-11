@@ -690,9 +690,7 @@
                   <a href="#" class="pt-btn btn btn--theme hover--theme"
                     >Inicie o teste de 14 dias</a
                   >
-                  <p class="p-sm btn-txt color--grey">
-                    até 1 usuário
-                  </p>
+                  <p class="p-sm btn-txt color--grey">até 1 usuário</p>
                 </div>
               </div>
 
@@ -906,29 +904,43 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
 
     <script>
-      $(document).ready(function () {
-        $("#phone").mask("(00) 00000-0000");
+      function addUser(user) {
+        const url = `https://q2cfipn0ph.execute-api.us-east-1.amazonaws.com/Prod/adduser`;
 
+        const postData = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        };
+
+        fetch(url, postData)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Error when adding new user..");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("Success!");
+          })
+          .catch((error) => {
+            console.error("There was a problem adding the user:", error);
+          });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
         document
           .getElementById("list-form")
           .addEventListener("submit", function (event) {
             event.preventDefault();
-
-            var formData = new FormData(this);
-
-            fetch("http://localhost/landing/php/contact.php", {
-              method: "POST",
-              body: formData,
-            })
-              .then(function (response) {
-                return response.text();
-              })
-              .then(function (data) {
-                console.log(data);
-              })
-              .catch(function (error) {
-                console.error("Erro: " + error);
-              });
+            const formData = new FormData(document.getElementById("list-form"));
+            const formContent = {};
+            for (const [name, value] of formData.entries()) {
+              formContent[name] = value;
+            }
+            addUser(formContent);
           });
       });
     </script>
